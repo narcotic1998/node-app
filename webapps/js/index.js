@@ -20,7 +20,7 @@ function constructLogin() {
 
 function bindEventListeners() {
    
-}=
+}
 
 init()
 
