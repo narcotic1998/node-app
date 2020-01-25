@@ -63,10 +63,25 @@ let appHTML = {
     }
 };
 
+let getTextAreaHTML = (config) => {
+    let { className, id } = config;
+    return `<textarea class="${className}" id="${id}"></textarea>`
+}
+
 let chatHTML = {
-    textArea : (config) => {
-        let { className, id } = config;
-        return `<textarea class="${className}" id="${id}"></textarea>`
+    getChatContainer : (config) => {
+        let textArea = getTextAreaHTML(config.textAreaConfig);
+        let button = appHTML.getButtonHtml(config.buttonConfig)
+        return `<div class="chat-container">
+                    ${textArea}
+                    ${button}
+                </div>`
+        
+    },
+    getMessageContainer : () => {
+        return `<div id="messagecontainer" class="message-container">
+                </div>
+                <div id="feedback"></div>`
     }
 }
 

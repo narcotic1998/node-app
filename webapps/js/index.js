@@ -1,6 +1,4 @@
 import { appHTML } from "./html.js";
-import styles from "../css/style.css";
-import common from "../css/common.css";
 require("./events")
 require("./inputHandler");
 import {SocketHandler} from "./socketHandler"

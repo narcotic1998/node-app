@@ -1,0 +1,40 @@
+.chat-composer {
+    width: 300px;
+    border-radius: 5px;
+    height: 70px;
+    font-size: 14px;
+    outline: none;
+    border-color: #afdb9e;
+}
+
+.chat-container {
+    position: fixed;
+    bottom: 10px;
+    right: 13px;
+}
+
+.chat-container>.naren-btn {
+    position: relative;
+    bottom: 35px;
+}
+
+.message-container {
+    padding: 20px;
+    width: 50%;
+    word-break: break-all;
+}
+
+.message {
+    margin: 15px;
+}
+
+.message > strong {
+    text-transform: capitalize;
+}
+
+#feedback {
+    margin-left : 35px;
+    margin-top : -20px;
+    color: #888;
+    font-style: italic;
+}

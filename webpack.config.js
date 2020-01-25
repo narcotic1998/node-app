@@ -1,14 +1,13 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
-var uglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: './dist/main.js',
+    entry: './js/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js'
     },
-    watch : false,
+    watch : true,
     // sourceType: 'unambiguous',
     plugins: [
             new MiniCssExtractPlugin({
@@ -26,9 +25,9 @@ module.exports = {
                     loader: MiniCssExtractPlugin.loader,
                     options: {
                         // only enable hot in development
-                        hmr: process.env.NODE_ENV === 'production',
+                        hmr: process.env.NODE_ENV === 'development',
                         // if hmr does not work, this is a forceful method.
-                        reloadAll: false,
+                        reloadAll: true,
                     },
                 },
                 'css-loader',

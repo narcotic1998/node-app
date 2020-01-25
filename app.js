@@ -40,5 +40,15 @@ io.on('connection', handleSocketConnection)
 
 function handleSocketConnection(socket) {
     console.log('made connection with client', socket.id);
-    
+    socket.on('typing', data=> {
+        socket.broadcast.emit('typing', data)
+    })
+
+    socket.on('message', data => {
+        io.sockets.emit('message', data)
+    }) 
+
+    socket.on('textdraft', data => {
+        socket.broadcast.emit('textdraft', data)
+    })
 }

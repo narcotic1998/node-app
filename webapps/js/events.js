@@ -1,5 +1,6 @@
 import {Login} from "./login.js"
 import {Register} from "./register.js"
+import { ChatHandler } from "./chatHandler.js"
 require("./gator.js")
 
 export let EventHandler = (function () {
@@ -16,6 +17,7 @@ export let EventHandler = (function () {
             login: Login.handleLogin,
             loadsignup : Register.loadSignup,
             signup: Register.register,
+            sendmessage : ChatHandler.sendMessage
         }
     }
 })()
