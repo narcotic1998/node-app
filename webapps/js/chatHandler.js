@@ -13,6 +13,7 @@ export let ChatHandler = (function() {
     let invertIsTyping;
     let typer = '';
     let feedback;
+    let getUserId = '';
 
     function init() {
         setUserName();
@@ -20,7 +21,9 @@ export let ChatHandler = (function() {
         bindEventListeners();
         SocketHandler.subscribe('message', handleIncomingMessage);
         SocketHandler.subscribe('typing', handleTypingMessage);
-        SocketHandler.subscribe('textdraft', handleDraftedText)
+        SocketHandler.subscribe('textdraft', handleDraftedText);
+        SocketHandler.subscribe('textclear', handleTyperClear)
+        getUserId = SocketHandler.getID()
     }
 
     function setUserName() {
@@ -46,7 +49,7 @@ export let ChatHandler = (function() {
     }
 
     function bindEventListeners() {
-        Gator(composer[0]).on("keydown", throttle(handleKeyDown, 1000))
+        Gator(composer[0]).on("keydown", handleKeyDown)
     }
 
     function handleKeyDown(event) {
@@ -71,10 +74,14 @@ export let ChatHandler = (function() {
         emit(data)
     }, 1000)
 
-    function handleIncomingMessage(data) {
+    function handleIncomingMessage({ data, id }) {
         clearTyper(data.name)
-        if (data.name === user_name) data.name = 'You'
+        if (getUserId === id) data.name = 'You'
         $('#messagecontainer').append(getConstructedMessage(data)) 
+    }
+
+    function handleTyperClear() {
+        clearTyper(typer)
     }
 
     function clearTyper(name) {
@@ -119,14 +126,23 @@ export let ChatHandler = (function() {
     }
 
     function sendDraftStatus() {
+        let message = getValue().trim()
+        if (!message) {
+            sendTextClear();
+            return;
+        }
         let data = {
             type : 'textdraft',
             data : {
                 name : user_name,
-                message : getValue()
+                message
             }
         }
         emit(data)
+    }
+
+    function sendTextClear() {
+        emit({type : 'textclear'})
     }
 
     function getValue() {
@@ -134,7 +150,7 @@ export let ChatHandler = (function() {
     }
 
     function sendMessage() {
-        let message = getValue();
+        let message = getValue().trim();
         if (!message) return;
         let data = {
             type : 'message',

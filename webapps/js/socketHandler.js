@@ -5,7 +5,6 @@ export let SocketHandler = (function() {
     
     function init() {
         socket = io.connect(window.location.origin)
-        bindListener();
     }
 
     function subscribe(type, handler) {
@@ -22,13 +21,14 @@ export let SocketHandler = (function() {
         socket.emit(emit_data.type, emit_data.data)
     }
 
-    function bindListener() {
-
+    function getID() {
+        return socket.id
     }
 
     return {
         init,
         subscribe,
-        emit
+        emit,
+        getID
     }
 })()

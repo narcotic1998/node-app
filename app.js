@@ -45,10 +45,14 @@ function handleSocketConnection(socket) {
     })
 
     socket.on('message', data => {
-        io.sockets.emit('message', data)
+        io.sockets.emit('message', { data, id : socket.id })
     }) 
 
     socket.on('textdraft', data => {
         socket.broadcast.emit('textdraft', data)
+    })
+
+    socket.on('textclear', data => {
+        socket.broadcast.emit('textclear')
     })
 }
