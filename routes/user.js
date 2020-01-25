@@ -2,7 +2,15 @@ let express = require("express")
 let root_dir = require("../root")
 let user = express.Router()
 user.get('/', (req, res) => {
-    res.sendFile(`${root_dir}/data/data.json`)
+
+    res.send({
+        name : 'Naren',
+        data : [
+            {
+                email : 'csknaren@gmail.com'
+            }
+        ]
+    })
 })
 
 module.exports = user

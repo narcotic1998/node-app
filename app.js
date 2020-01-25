@@ -5,6 +5,7 @@ let user = require("./routes/user")
 let redis = require('redis')
 let redisStore = require('connect-redis')(session)
 let client = redis.createClient();
+let socket = require('socket.io');
 global.__basedir = __dirname;
 
 app.use(session({
