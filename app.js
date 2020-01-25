@@ -6,14 +6,15 @@ let redis = require('redis')
 let redisStore = require('connect-redis')(session)
 let client = redis.createClient();
 let socket = require('socket.io');
+let os = require('os')
 global.__basedir = __dirname;
-
+let port = process.env.PORT || 5000
 app.use(session({
     secret: 'ssshhhhh',
     // create new redis store.
     store: new redisStore({
-        host: 'localhost',
-        port: 6379,
+        host: os.hostname(),
+        port,
         client: client,
         ttl: 260
     }),
@@ -26,8 +27,6 @@ app.use('/api/user', user)
 app.get("/*", (req, res) => {
     res.sendFile(`${__dirname}/webapps/index.html`)
 })
-
-let port = process.env.PORT || 5000
 
 let server = app.listen(port, () => {console.log(`listening on port ${port}.....`)})
 
