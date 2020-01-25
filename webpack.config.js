@@ -27,7 +27,7 @@ module.exports = {
                         // only enable hot in development
                         hmr: process.env.NODE_ENV === 'production',
                         // if hmr does not work, this is a forceful method.
-                        reloadAll: true,
+                        reloadAll: false,
                     },
                 },
                 'css-loader',
