@@ -1,18 +1,25 @@
-let getinputHTML = (config) => {
-    let default_config = {
-        type: 'text',
-        class: "",
-        id: 'text'
-    }
-    config = Object.assign({}, default_config, config)
-    return `<input type="${config.type}" class="${config.class}" id='${config.id}'>`
+import { appHTML } from "./html.js";
+import styles from "../css/style.css";
+import common from "../css/common.css";
+require("./events")
+require("./inputHandler")
+
+function init() {
+    constructLogin()
+    bindEventListeners()
 }
-document.body.insertAdjacentHTML("beforeend", getinputHTML())
-let ajax = new XMLHttpRequest();
-ajax.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-        console.log(this.response)
-    }
+
+function constructLogin() {
+    let bodyHtml = appHTML.getBody()
+    $(document.body).append(bodyHtml)
+    let login_container_html = appHTML.getLoginContainer()
+    $(".login-body").append(login_container_html)
+    $("#login_name").focus()
 }
-ajax.open("GET", "/api/name", true)
-ajax.send()
+
+function bindEventListeners() {
+   
+}
+
+init()
+

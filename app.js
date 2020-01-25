@@ -1,19 +1,29 @@
 let express = require('express')
+let session = require('express-session')
 let app = express();
-let path = `${__dirname}/webapps`
+let user = require("./routes/user")
+let redis = require('redis')
+let redisStore = require('connect-redis')(session)
+let client = redis.createClient();
+global.__basedir = __dirname;
+
+app.use(session({
+    secret: 'ssshhhhh',
+    // create new redis store.
+    store: new redisStore({
+        host: 'localhost',
+        port: 6379,
+        client: client,
+        ttl: 260
+    }),
+    saveUninitialized: false,
+    resave: false
+}))
+app.use(express.static(__dirname))
 app.use(express.static("webapps"))
-
-let names = [ 'qwer','asdf','erty','zcxv','asdf','bnad','nasdf','qwer','asdf' ]
+app.use('/api/user', user)
 app.get("/", (req, res) => {
-    res.sendFile(`${path}/index.html`)
-})
-
-app.get("/api/name", (req, res) => {
-    res.sendFile(`${__dirname}/data.json`);
-})
-
-app.get("/api/name?:startwith", (req, res) => {
-    console.log("asf")
+    res.sendFile(`${__dirname}/webapps/index.html`)
 })
 
 let port = process.env.PORT || 5000
