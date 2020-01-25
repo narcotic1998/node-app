@@ -196,7 +196,7 @@ eval("(function() {\n    let setPlaceHolder = (e, elem) => {\n        elem = $(e
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Login\", function() { return Login; });\n/* harmony import */ var _html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./html */ \"./webapps/js/html.js\");\n/* harmony import */ var _html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_html__WEBPACK_IMPORTED_MODULE_0__);\n\n\nlet Login = (function() {\n\n    let username\n})()\n\n//# sourceURL=webpack:///./webapps/js/login.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Login\", function() { return Login; });\n/* harmony import */ var _html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./html */ \"./webapps/js/html.js\");\n/* harmony import */ var _html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_html__WEBPACK_IMPORTED_MODULE_0__);\n\n\nlet Login = (function() {\n\n    let username = '';\n})()\n\n//# sourceURL=webpack:///./webapps/js/login.js?");
 
 /***/ }),
 

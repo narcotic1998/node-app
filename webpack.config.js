@@ -8,7 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js'
     },
-    watch : true,
+    watch : false,
     // sourceType: 'unambiguous',
     plugins: [
             new MiniCssExtractPlugin({
