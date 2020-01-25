@@ -1,13 +1,14 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
+var uglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    entry: './js/index.js',
+    entry: './dist/main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js'
     },
-    watch : true,
+    watch : false,
     // sourceType: 'unambiguous',
     plugins: [
             new MiniCssExtractPlugin({
