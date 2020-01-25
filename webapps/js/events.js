@@ -13,7 +13,7 @@ export let EventHandler = (function () {
 
     let eventHandler = {
         documentclick: {
-            login: Login,
+            login: Login.handleLogin,
             loadsignup : Register.loadSignup,
             signup: Register.register,
         }

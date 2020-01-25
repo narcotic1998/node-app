@@ -61,8 +61,16 @@ let appHTML = {
                     </div>
                 </div>`
     }
+};
+
+let chatHTML = {
+    textArea : (config) => {
+        let { className, id } = config;
+        return `<textarea class="${className}" id="${id}"></textarea>`
+    }
 }
 
 module.exports = {
-    appHTML
+    appHTML,
+    chatHTML
 }
