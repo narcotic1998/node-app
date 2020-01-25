@@ -2,11 +2,12 @@ import { appHTML } from "./html.js";
 import styles from "../css/style.css";
 import common from "../css/common.css";
 require("./events")
-require("./inputHandler")
+require("./inputHandler");
 
 function init() {
     constructLogin()
     bindEventListeners()
+    require('./socketHandler')
 }
 
 function constructLogin() {
@@ -19,7 +20,7 @@ function constructLogin() {
 
 function bindEventListeners() {
    
-}
+}=
 
 init()
 

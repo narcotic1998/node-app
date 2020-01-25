@@ -23,10 +23,25 @@ app.use(session({
 app.use(express.static(__dirname))
 app.use(express.static("webapps"))
 app.use('/api/user', user)
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
     res.sendFile(`${__dirname}/webapps/index.html`)
 })
 
 let port = process.env.PORT || 5000
 
-app.listen(port, () => {console.log(`listening on port ${port}.....`)})
+let server = app.listen(port, () => {console.log(`listening on port ${port}.....`)})
+
+
+// socket connection
+
+let io = socket(server);
+
+io.on('connection', handleSocketConnection)
+
+
+function handleSocketConnection(socket) {
+    console.log('made connection with client');
+    socket.on('getsocketdata', () => {
+        io.sockets.emit('socketdata', "hello")
+    })
+}
